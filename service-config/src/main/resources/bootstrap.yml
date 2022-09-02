@@ -7,4 +7,11 @@ spring:
     config:
       server:
         git:
-          uri:
+          uri: 'https://github.com/satanas66/microservicios.git'
+          searchPaths: config-data
+          username: satanas66
+          password: ODFenergia37GIT
+  security:
+    user:
+      name: root
+      password: s3cr3t
