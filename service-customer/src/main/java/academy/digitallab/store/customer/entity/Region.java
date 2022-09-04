@@ -1,4 +1,4 @@
-package academy.digitallab.store.customer.repository.entity;
+package academy.digitallab.store.customer.entity;
 
 import lombok.Data;
 
@@ -14,7 +14,4 @@ public class Region implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-
-
-
 }

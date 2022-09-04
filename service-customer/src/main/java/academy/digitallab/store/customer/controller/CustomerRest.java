@@ -1,7 +1,7 @@
 package academy.digitallab.store.customer.controller;
 
-import academy.digitallab.store.customer.repository.entity.Customer;
-import academy.digitallab.store.customer.repository.entity.Region;
+import academy.digitallab.store.customer.entity.Customer;
+import academy.digitallab.store.customer.entity.Region;
 import academy.digitallab.store.customer.service.CustomerService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,4 +1,4 @@
-package academy.digitallab.store.customer.repository.entity;
+package academy.digitallab.store.customer.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
@@ -39,7 +39,6 @@ public class Customer implements Serializable {
 
     @Column(name="photo_url")
     private String photoUrl;
-
 
     @NotNull(message = "la región no puede ser vacia")
     @ManyToOne(fetch = FetchType.LAZY)
