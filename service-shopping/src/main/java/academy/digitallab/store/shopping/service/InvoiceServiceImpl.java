@@ -34,31 +34,30 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public List<Invoice> findInvoiceAll() {
-        return  invoiceRepository.findAll();
+        return invoiceRepository.findAll();
     }
 
 
     @Override
     public Invoice createInvoice(Invoice invoice) {
-        Invoice invoiceDB = invoiceRepository.findByNumberInvoice ( invoice.getNumberInvoice () );
-        if (invoiceDB !=null){
-            return  invoiceDB;
+        Invoice invoiceDB = invoiceRepository.findByNumberInvoice(invoice.getNumberInvoice());
+        if (invoiceDB != null) {
+            return invoiceDB;
         }
         invoice.setState("CREATED");
         invoiceDB = invoiceRepository.save(invoice);
         invoiceDB.getItems().forEach(invoiceItem -> {
-            productClient.updateStockProduct(invoiceItem.getProductId(), invoiceItem.getQuantity()+-1);
+            productClient.updateStockProduct(invoiceItem.getProductId(), invoiceItem.getQuantity() + -1);
         });
 
         return invoiceDB;
     }
 
-
     @Override
     public Invoice updateInvoice(Invoice invoice) {
         Invoice invoiceDB = getInvoice(invoice.getId());
-        if (invoiceDB == null){
-            return  null;
+        if (invoiceDB == null) {
+            return null;
         }
         invoiceDB.setCustomerId(invoice.getCustomerId());
         invoiceDB.setDescription(invoice.getDescription());
@@ -72,8 +71,8 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public Invoice deleteInvoice(Invoice invoice) {
         Invoice invoiceDB = getInvoice(invoice.getId());
-        if (invoiceDB == null){
-            return  null;
+        if (invoiceDB == null) {
+            return null;
         }
         invoiceDB.setState("DELETED");
         return invoiceRepository.save(invoiceDB);
@@ -83,10 +82,10 @@ public class InvoiceServiceImpl implements InvoiceService {
     public Invoice getInvoice(Long id) {
 
         Invoice invoice = invoiceRepository.findById(id).orElse(null);
-        if(null != invoice){
+        if (null != invoice) {
             Customer customer = customerClient.getCustomer(invoice.getId()).getBody();
             invoice.setCustomer(customer);
-            List<InvoiceItem> listItems = invoice.getItems().stream(). map(invoiceItem -> {
+            List<InvoiceItem> listItems = invoice.getItems().stream().map(invoiceItem -> {
                 Product product = productClient.getProduct(invoiceItem.getProductId()).getBody();
                 invoiceItem.setProduct(product);
                 return invoiceItem;

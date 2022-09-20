@@ -10,6 +10,8 @@ import java.util.Map;
 
 @Getter @Setter @Builder
 public class ErrorMessage {
+
     private String code ;
+
     private List<Map<String, String >> messages ;
 }
