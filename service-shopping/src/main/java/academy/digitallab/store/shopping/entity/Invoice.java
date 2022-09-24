@@ -45,7 +45,6 @@ public class Invoice {
     public Invoice() {
         items = new ArrayList<>();
     }
-
     @PrePersist
     public void prePersist() {
         this.createAt = new Date();

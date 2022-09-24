@@ -5,10 +5,9 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-@FeignClient(name="service-customer")
-@RequestMapping("/customers")
+@FeignClient(name="service-customer", path = "/customers")
+//@RequestMapping("/customers")
 public interface CustomerClient {
 
     @GetMapping(value = "/{id}")
